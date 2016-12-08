@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	template="/WEB-INF/template/layout.xhtml">
+	
+	<f:metadata>
+		<f:viewAction action="#{jogadoresPesquisaBean.iniciar}" />
+	</f:metadata>
+
+	<ui:define name="head">	
+		Pesquisa de jogadores
+	</ui:define>
+
+	<ui:define name="body">
+		<h:form class="form-horizontal">
+			<div class="form-group">
+				<h:messages infoClass="alert alert-info"
+					fatalClass="alert alert-danger"
+					warnClass="alert alert-warning"
+					errorClass="alert alert-danger"
+					style="list-style:none; margin:0; padding:0" />
+			</div>
+			
+			<div class="form-group">				
+				<div class="col-sm-offset-6 col-sm-6">
+					<div class="input-group">
+						<input type="text" class="form-control"
+							placeholder="Faça uma pesquisa por nome..." 
+							jsf:value="#{jogadoresPesquisaBean.termoPesquisa}" jsf:required="true" 
+							jsf:label="Campo pesquisa"/>
+						<span class="input-group-btn">							
+							<button class="btn btn-default" type="submit"
+								jsf:actionListener="#{jogadoresPesquisaBean.pesquisar}">
+								<span class="fa fa-search"></span> 
+								Pesquisar
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</h:form>
+
+		<h:dataTable styleClass="table table-bordered" var="jogador"
+			value="#{jogadoresPesquisaBean.listaJogadores}">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#" />
+				</f:facet>
+
+				<h:link outcome="jogador-index" styleClass="btn btn-default">
+					<f:param name="id" value="#{jogador.id}" />
+					<span class="fa fa-edit"></span>
+				</h:link>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nome" />
+				</f:facet>
+
+				<h:outputText value="#{jogador.nome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="E-mail" />
+				</f:facet>
+
+				<h:outputText value="#{jogador.email}" />
+			</h:column>
+		</h:dataTable>
+	</ui:define>
+</ui:composition>

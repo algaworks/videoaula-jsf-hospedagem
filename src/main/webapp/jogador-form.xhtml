@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	template="/WEB-INF/template/layout.xhtml">
+	
+	<f:metadata>
+		<f:viewParam name="id" value="#{jogadorBean.jogador.id}"  />
+
+		<f:viewAction action="#{jogadorBean.buscar}" if="#{param.id ne null}" />
+	</f:metadata>
+
+	<ui:define name="head">	
+		#{jogadorBean.jogador.id eq null ? 'Novo' : 'Editar'} Jogador
+	</ui:define>
+
+	<ui:define name="body">
+		<h:form>
+		<div class="form-group">
+			<h:messages infoClass="alert alert-info"
+				fatalClass="alert alert-danger" errorClass="alert alert-danger"
+				style="list-style:none; margin:0; padding:0" />
+		</div>
+
+		<div class="form-group">
+			<label class="control-label">Nome</label> <input type="text"
+				class="form-control" jsf:value="#{jogadorBean.jogador.nome}"
+				jsf:required="true" jsf:label="Nome" />
+		</div>
+
+		<div class="form-group">
+			<label class="control-label">E-mail</label> <input type="email"
+				class="form-control" jsf:value="#{jogadorBean.jogador.email}" />
+		</div>
+
+		<div class="form-group">
+			<button jsf:actionListener="#{jogadorBean.salvar}"
+				class="btn btn-primary" type="submit">
+				<span class="fa fa-save"></span> Salvar
+			</button>
+
+			<button jsf:action="#{jogadorBean.remover}" class="btn btn-danger"
+				type="submit" style="margin-left: 10px"
+				jsf:rendered="#{jogadorBean.jogador.id ne null}">
+				<span class="fa fa-save"></span> Remover
+			</button>
+
+			<h:link styleClass="btn btn-default" outcome="jogador-index"
+				rendered="#{jogadorBean.jogador.id ne null}"
+				style="margin-left: 10px">
+				<f:param name="id" value="#{jogadorBean.jogador.id}"  />
+				<span class="fa fa-arrow-left"></span>					
+					Voltar
+			</h:link>
+			
+			<h:link styleClass="btn btn-default" outcome="jogadores-pesquisa"
+				rendered="#{jogadorBean.jogador.id eq null}"
+				style="margin-left: 10px">
+				
+				<span class="fa fa-arrow-left"></span>					
+					Voltar
+			</h:link>
+		</div>
+	</h:form>
+	</ui:define>
+</ui:composition>

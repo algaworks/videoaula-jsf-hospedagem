@@ -1,0 +1,10 @@
+.DS_Store
+.classpath
+.project
+.settings/
+.metadata/
+target/
+tmp
+local.properties
+.git.algaworks
+.git.github

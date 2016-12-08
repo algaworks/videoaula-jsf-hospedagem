@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<h:head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<h:outputStylesheet library="webjars"
+		name="bootstrap/3.2.0/css/bootstrap.min.css" />
+	<h:outputStylesheet library="webjars"
+		name="bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/4.5.0/css/font-awesome-jsf.css" />
+
+	<h:outputScript library="webjars" name="jquery/1.12.4/jquery.min.js"  />
+	<h:outputScript library="webjars"
+		name="bootstrap/3.2.0/js/bootstrap.min.js" />
+
+	<title>AlgaWorks | Hospedagem de aplicações JSF</title>
+</h:head>
+
+<h:body>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<h:link styleClass="navbar-brand"
+					outcome="jogadores-pesquisa">
+					Rachinha
+				</h:link>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">		            
+		            <li class="dropdown">
+		            	<a href="#" class="dropdown-toggle" data-toggle="dropdown" 
+		            		role="button" aria-haspopup="true" aria-expanded="false">
+		            		Jogadores 
+		            		<span class="caret"></span>
+	            		</a>
+	            		   
+			            <ul class="dropdown-menu">		            
+				            <li>
+				            	<h:link outcome="jogador-form">
+									<span class="fa fa-plus"></span>
+									Novo
+								</h:link>
+							</li>					
+				            <li>
+				            	<h:link outcome="jogadores-pesquisa">
+									<span class="fa fa-search"></span>
+									Pesquisa
+								</h:link>
+							</li>					
+						</ul>		            
+		            </li>					
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-right">		            
+		            <li><a href="http://blog.algaworks.com/hospedagem-jsf" target="_blank">Este artigo</a></li>
+		            <li><a href="http://blog.algaworks.com/" target="_blank">Nosso blog</a></li>
+		            <li><a href="http://algaworks.com/" target="_blank">Nosso site</a></li>
+					<li><a href="http://www.facebook.com/algaworks" target="_blank">Facebook</a></li>
+		            <li><a href="http://www.youtube.com/algaworks" target="_blank">YouTube</a></li>
+		            <li><a href="http://github.com/algaworks" target="_blank">Github</a></li>					
+				</ul>
+			</div>
+		</div>
+	</nav>		
+
+	<div class="container" style="margin-top: 60px">
+		<h2 class="page-header">
+			<ui:insert name="head" />
+		</h2>
+		
+		<ui:insert name="body" />
+	</div>
+</h:body>
+</html>
