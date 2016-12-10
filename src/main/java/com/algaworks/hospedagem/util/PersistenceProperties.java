@@ -12,20 +12,44 @@ public class PersistenceProperties {
 
     private static final String JDBC_PASSWORD = "JDBC_PASSWORD";
 
+    /**
+     * Procura por propriedades que irão sobrescrever o persistence.xml. A procura é feita na
+     * pasta home do usuário, em variáveis de ambiente e em propriedades passadas 
+     * na inicialização do processo Java.
+     * 
+     * @return Properties propriedades que irão sobrescrever o persistence.xml
+     * @throws Exception
+     */
     public static Properties get() throws Exception {
         Properties props = new Properties();
         
-        props.putAll(userHomeJdbcFile());
+        props.putAll(userHomeJdbcFile());// Digital Ocean
         
+        // Se esse método (systemEnv) retornar alguma propriedade, igual a que o método anterior
+        // tenha configurado, ela irá prevalecer.
         props.putAll(systemEnv()); // Heroku
         
+        // Se esse método (javaPropertyJdbcFile()) retornar alguma propriedade, igual a que o método anterior
+        // tenha configurado, ela irá prevalecer.
         props.putAll(javaPropertyJdbcFile());
         
+        // Se esse método (javaProperties()) retornar alguma propriedade, igual a que o método anterior
+        // tenha configurado, ela irá prevalecer.
         props.putAll(javaProperties());
 
         return props;
     }
     
+    /**
+     * Verifica a existência de um arquivo jdbc.properties na pasta home do usuário. Caso exista,
+     * ele irá ler as propriedades que estão dentro dele.
+     * 
+     * A chave das propriedades desse arquivo devem ser iguais ao nome da propriedade do 
+     * persistence.xml que se deseja sobreescrever. 
+     *  
+     * @return Properties propriedades que irão sobrescrever o persistence.xml
+     * @throws Exception
+     */
     private static Properties userHomeJdbcFile() throws Exception {
         Properties props = new Properties();
         
@@ -38,6 +62,16 @@ public class PersistenceProperties {
         return props;
     }
     
+    /**
+     * Verifica a existência de variáveis de ambiente que serão usadas para sobrescrever
+     * as propriedades do persistence.xml.
+     * 
+     * A variável de ambiente para url, usuário e senha devem ter o mesmo nome dos valores
+     * das propriedades estáticas {@link #JDBC_URL}, {@link #JDBC_USER} e {@link #JDBC_PASSWORD} respectivamente.
+     *  
+     * @return Properties propriedades que irão sobrescrever o persistence.xml
+     * @throws Exception
+     */
     private static Properties systemEnv() {
         Properties props = new Properties();
         
@@ -56,6 +90,16 @@ public class PersistenceProperties {
         return props;
     }
     
+    /**
+     * Verifica a existência de um parâmetro Java passado na inicialização da aplicação. Esse
+     * parâmetro deve se chamar "jdbc-file", portanto será passado dessa forma "-Djdbc-file=/caminho/jdbc.properites".
+     * 
+     * A chave das propriedades desse arquivo devem ser iguais ao nome da propriedade do 
+     * persistence.xml que se deseja sobreescrever. 
+     *  
+     * @return Properties propriedades que irão sobrescrever o persistence.xml
+     * @throws Exception
+     */
     private static Properties javaPropertyJdbcFile() throws Exception {
         Properties props = new Properties();
         
@@ -71,7 +115,19 @@ public class PersistenceProperties {
         
         return props;
     }
-    
+ 
+    /**
+     * Verifica a existência de propriedades Java que serão usadas para sobrescrever
+     * as propriedades do persistence.xml.
+     * 
+     * A propriedade Java para url, usuário e senha devem ter o mesmo nome dos valores
+     * das propriedades estáticas {@link #JDBC_URL}, {@link #JDBC_USER} e {@link #JDBC_PASSWORD} respectivamente.
+     * 
+     * Caso queira sobrescrever a url, por exemplo, a propriedade a ser passada será "-DJDBC_URL=jdbc:mysql://url:porta/banco"
+     *  
+     * @return Properties propriedades que irão sobrescrever o persistence.xml
+     * @throws Exception
+     */
     private static Properties javaProperties() {
         Properties props = new Properties();
         
