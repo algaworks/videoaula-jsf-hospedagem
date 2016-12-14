@@ -2,7 +2,10 @@
 
 Código referente a videoaula de conteúdo gravada para AlgaWorks.
 
-Veja o arquivo [README-Heroku.md](https://github.com/algaworks/videoaula-jsf-hospedagem/blob/master/README-Heroku.md)
+Veja os arquivos abaixo:
+
+* [README-Heroku.md](https://github.com/algaworks/videoaula-jsf-hospedagem/blob/master/README-Heroku.md)
+* [README-DigitalOcean.md](https://github.com/algaworks/videoaula-jsf-hospedagem/blob/master/README-DigitalOcean.md)
 
 ### Rodando o projeto
 

@@ -52,9 +52,9 @@ $ heroku config
 
 $ heroku config:set JDBC_URL="...";
 
-heroku config:set JDBC_USER="...";
+$ heroku config:set JDBC_USER="...";
 
-heroku config:set JDBC_PASSWORD="..."
+$ heroku config:set JDBC_PASSWORD="..."
 
 $ git push heroku master
 
