@@ -1,6 +1,6 @@
 A aula pode ser acessada em:
 
-[http://blog.algaworks.com/hospedagem-jsf-digital-ocean](http://blog.algaworks.com/hospedagem-jsf-digital-ocean)
+[http://blog.algaworks.com/deploy-jsf-digitalocean](http://blog.algaworks.com/deploy-jsf-digitalocean)
 
 Vou deixar aqui as ações que foram executadas na aula e os comandos também.
 
